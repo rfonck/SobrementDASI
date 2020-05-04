@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Liste des mediums</title>
+        <!-- Librairie Javascript: jQuery (v3.4.1) -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    </head>
+    <body>
+
+        <h1>Liste de mediums</h1>
+        <button id="bouton-listemedium">Afficher liste mediums</button>
+        <br/>
+        <p id ="notification"></p>
+        <ul id = "listemedium"></ul>
+        <script>
+            $(document).ready( function () {
+                $('#bouton-listemedium').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
+
+                    console.log("clic sur le bouton de listemedium"); // LOG dans Console Javascript
+                    $('#notification').html("Affichermedium..."); // Message pour le paragraphe de notification
+
+                    // Récupération de la valeur des champs du formulaire
+
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'afficherlistemedium'
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.etataffichage) {
+                            //$('#notification').html("Connexion OK");  // Message pour le paragraphe de notification
+                            // TODO: afficher les informations du client dans la notification
+                            // Exemple: Connexion de Ada Lovelace (ID 1)
+                            var taille = response.tailleliste;
+                            $('#listemedium').empty();
+                            for (let i=0;i<taille;i++){
+                                $('#listemedium').append("<li>"+"Sexe :-"+response.listemedium[i].sexe+" Denomination : "+response.listemedium[i].denomination+"</li>");
+                            }
+                            $('#notification').html("Affichage des mediums :");  // Message pour le paragraphe de notification
+                        }
+                        else {
+                            $('#notification').html("Erreur d'affichage de la liste des mediums"); // Message pour le paragraphe de notification
+                        }
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        
+                    });
+                });
+            });
+        </script>
+
+        <!-- Lien vers l'accueil -->
+        <p><a href="index.html">Retour à la page d'Accueil</a></p>
+
+        
+    </body>
+</html>
