@@ -18,17 +18,19 @@ public class AuthentifierClientAction extends Action {
         String password = request.getParameter("password");
 
         Service service = new Service();
-        Client client = service.authentifierClient(login, password);
+        String type = service.identifierUtilisateur(login, password);
+        if(type.equals("client")){
+            Client client = service.connecterClient(login, password);
+            request.setAttribute("client", client);
 
-        request.setAttribute("client", client);
-        
-        // Gestion de la Session: ici, enregistrer l'ID du Client authentifié
-        HttpSession session = request.getSession();
-        if (client != null) {
-            session.setAttribute("idClient", client.getId());
-        }
-        else {
-            session.removeAttribute("idClient");
+            // Gestion de la Session: ici, enregistrer l'ID du Client authentifié
+            HttpSession session = request.getSession();
+            if (client != null) {
+                session.setAttribute("idClient", client.getId());
+            }
+            else {
+                session.removeAttribute("idClient");
+            }
         }
     }
     
