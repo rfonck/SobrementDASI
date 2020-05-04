@@ -44,15 +44,17 @@ public class ActionServlet extends HttpServlet {
         {
         JsonObject container = new JsonObject();
         Service service = new Service();
-        Client c = service.authentifierClient(mail,password);
-        if(c!=null)
+        String type = service.identifierUtilisateur(mail,password);
+        
+        if(type.equals("client"))
         {
+            Client c = service.connecterClient(mail, password);
             container.addProperty("connexion",true);
             JsonObject client = new JsonObject();
             client.addProperty("id",c.getId());
             client.addProperty("nom",c.getNom());
             client.addProperty("prenom",c.getPrenom());
-            client.addProperty("mail",c.getMail());
+            client.addProperty("mail",c.getEmail());
             container.add("client",client);
         }
         else
@@ -61,10 +63,10 @@ public class ActionServlet extends HttpServlet {
             container.addProperty("connexion",false);
         }
         response.setContentType("application/json;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
-        gson.toJson (container,out);
-        out.close();
+            try (PrintWriter out = response.getWriter()) {
+                Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+                gson.toJson (container,out);
+            }
         }
         
         
