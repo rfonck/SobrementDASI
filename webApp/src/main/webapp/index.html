@@ -3,8 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <title>TD DASI - Initiation Web</title>
+        <script type="text/javascript">
+            function RedirectionJavascript(){
+              document.location.href="presentation.html";
+            }
+        </script>
     </head>
-    <body>
+    <body onLoad="setTimeout('RedirectionJavascript()', 1000)">
         <h1>TD DASI - Initiation Web</h1>
         <p>Ce TD vous intie aux technologies Web. Êtes-vous prêts ?</p>
         <p><a href="./login.html">Aller à la page de Connexion</a></p>

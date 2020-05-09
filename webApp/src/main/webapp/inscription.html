@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Inscription cosmique</title>
+        <!-- Librairie Javascript: jQuery (v3.4.1) -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    </head>
+    <body>
+        <p id="notification">blablabla</p>
+        
+        <h1>Inscription</h1>
+        <input type="text" id="champ_nom_de_famille" value="nom de famille" />
+        <br/>
+        <input type="text" id="champ_prenom" value="prénom" />
+        <br/>
+        <input type="text" id="champ_adresse_electronique" value="Adresse électronique" />
+        <br/>
+        <input type="text" id="champ_Date_de_naissance" value="03/04/1999" />
+        <br/>
+        <input type="text" id="champ_numero_de_telephone" value="numéro de téléphone"/>
+        <br/>
+        <input type="text" id="champ_adresse_postale" value="adresse postale"/>
+        <br/>
+        <input type="password" id="champ_mot_de_passe" value="mot de passe"/>
+        <br/>
+        
+       <button id="bouton_inscription">inscription</button>
+
+        <script>
+            $(document).ready( function () {
+                $('#bouton_inscription').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
+
+                    console.log("clic sur le bouton de connexion"); // LOG dans Console Javascript
+                    $('#notification').html("Inscription..."); // Message pour le paragraphe de notification
+
+                    // Récupération de la valeur des champs du formulaire
+                    var champ_nom_de_famille = $('#champ_nom_de_famille').val();
+                    var champ_prenom = $('#champ_prenom').val();
+                    var champ_adresse_electronique = $('#champ_adresse_electronique').val();
+                    var champ_Date_de_naissance = $('#champ_Date_de_naissance').val();
+                    var champ_numero_de_telephone = $('#champ_numero_de_telephone').val();
+                    var champ_adresse_postale = $('#champ_adresse_postale').val();
+                    var champ_mot_de_passe = $('#champ_mot_de_passe').val();
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'inscrire',
+                            nom_de_famille: champ_nom_de_famille,
+                            prenom: champ_prenom,
+                            adresse_electronique: champ_adresse_electronique,
+                            Date_de_naissance: champ_Date_de_naissance,
+                            numero_de_telephone: champ_numero_de_telephone,
+                            adresse_postale: champ_adresse_postale,
+                            mot_de_passe: champ_mot_de_passe
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.inscription) {
+                            document.location.href="login.html";
+                        }
+                        else {
+                            $('#notification').html("Erreur d'e Connexion'inscription"); // Message pour le paragraphe de notification
+                        }
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

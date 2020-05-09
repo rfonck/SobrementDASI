@@ -7,37 +7,26 @@ package fr.insalyon.dasi.ihm.web.serialisation;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import fr.insalyon.dasi.metier.modele.Medium;
+import fr.insalyon.dasi.metier.modele.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author jjmdu
+ * @author rfonc
  */
-public class AfficherListeMediumSerialisation extends Serialisation {
-
-    @Override
+public class InscrireSerialisation extends Serialisation {
+    
+    
+  @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        List<Medium> listemedium = (List<Medium>)request.getAttribute("listemedium");
-        
         JsonObject container = new JsonObject();
-        container.addProperty("tailleliste", listemedium.size() );
-        container.addProperty("etataffichage", true);
-        JsonArray liste = new JsonArray();
-        for(int i=0; i<listemedium.size(); i++) {
-            JsonObject medium = new JsonObject();
-            medium.addProperty("sexe", listemedium.get(i).getSexe());
-            medium.addProperty("denomination", listemedium.get(i).getDenomination());
-            liste.add( medium);
-        }
-        container.add("listemedium", liste);
+        
+        container.addProperty("inscription", request.getParameter("inscription"));
 
         response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
