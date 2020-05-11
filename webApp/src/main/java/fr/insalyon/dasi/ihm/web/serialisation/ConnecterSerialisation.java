@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -18,21 +19,15 @@ public class ConnecterSerialisation extends Serialisation {
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        Client client = (Client)request.getAttribute("client");
-        
         JsonObject container = new JsonObject();
-
-        Boolean connexion = (client != null);
-        container.addProperty("connexion", connexion);
-
-        if (client != null) {
-            JsonObject jsonClient = new JsonObject();
-            jsonClient.addProperty("id", client.getId());
-            jsonClient.addProperty("nom", client.getNom());
-            jsonClient.addProperty("prenom", client.getPrenom());
-            jsonClient.addProperty("mail", client.getEmail());
-
-            container.add("client", jsonClient);
+        
+        
+        if( (boolean) request.getAttribute("connexion")){
+            container.addProperty("connexion", true); 
+            container.addProperty("type", (String) request.getAttribute("type"));   
+        }
+        else{
+            container.addProperty("connexion", false); 
         }
 
         response.setContentType("application/json;charset=UTF-8");
