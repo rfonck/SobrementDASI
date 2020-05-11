@@ -21,7 +21,7 @@ and open the template in the editor.
         <br/>
         <input type="text" id="champ_adresse_electronique" value="Adresse électronique" />
         <br/>
-        <input type="text" id="champ_Date_de_naissance" value="03/04/1999" />
+        <input type="date" id="champ_Date_de_naissance"  />
         <br/>
         <input type="text" id="champ_numero_de_telephone" value="numéro de téléphone"/>
         <br/>
@@ -48,6 +48,7 @@ and open the template in the editor.
                     var champ_adresse_postale = $('#champ_adresse_postale').val();
                     var champ_mot_de_passe = $('#champ_mot_de_passe').val();
                     // Appel AJAX
+                    console.log('Date',champ_Date_de_naissance);
                     $.ajax({
                         url: './ActionServlet',
                         method: 'POST',

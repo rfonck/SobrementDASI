@@ -31,32 +31,39 @@ public class InscrireAction extends Action{
         String mot_de_passe = request.getParameter("mot_de_passe");
         Calendar date = getInstance();
         //Integer.parseInt(Date_de_naissance.substring(0, 1))
+        int Cbon = 1;
+        
+        
         try {
-           date.set(Integer.parseInt(Date_de_naissance.substring(6,10)), Integer.parseInt(Date_de_naissance.substring(3,5))-1, Integer.parseInt(Date_de_naissance.substring(0,2)));
+           date.set(Integer.parseInt(Date_de_naissance.substring(0,4)), Integer.parseInt(Date_de_naissance.substring(5,7))-1, Integer.parseInt(Date_de_naissance.substring(8,10)));
         }
         catch (NumberFormatException e)
         {
+            Cbon = 0;
         }
         
-        int num;
+        int num = 0;
         try {
            num = Integer.parseInt(numero_de_telephone);
         }
         catch (NumberFormatException e)
         {
-           num = 0;
+           Cbon = 0;
         }
 
         Client client = new Client(prenom,nom_de_famille, date, adresse_postale, adresse_electronique, num, mot_de_passe);
         
         Service service = new Service();
         long id = service.inscrireClient(client);
-        if(id != 0){
+        
+        
+        if (id != 0 && Cbon == 1 ) {
             request.setAttribute("inscription", true);
         }
         else {
-            request.setAttribute("inscription", false);
+            request.removeAttribute("inscription");
+        }        
         
-        }
+
     }
 }

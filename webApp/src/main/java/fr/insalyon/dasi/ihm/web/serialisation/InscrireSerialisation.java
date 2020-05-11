@@ -26,7 +26,7 @@ public class InscrireSerialisation extends Serialisation {
 
         JsonObject container = new JsonObject();
         
-        container.addProperty("inscription", request.getParameter("inscription"));
+        container.addProperty("inscription", (Boolean) request.getAttribute("inscription"));
         
         response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();

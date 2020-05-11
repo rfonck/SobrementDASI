@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author DASI Team
  */
-public class ProfilClientSerialisation extends Serialisation {
+public class ConnecterSerialisation extends Serialisation {
 
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {

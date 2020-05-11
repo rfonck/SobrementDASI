@@ -3,11 +3,11 @@ package fr.insalyon.dasi.ihm.web;
 import fr.insalyon.dasi.dao.JpaUtil;
 import fr.insalyon.dasi.ihm.web.action.Action;
 import fr.insalyon.dasi.ihm.web.action.AfficherListeMediumAction;
-import fr.insalyon.dasi.ihm.web.action.AuthentifierClientAction;
+import fr.insalyon.dasi.ihm.web.action.ConnecterAction;
 import fr.insalyon.dasi.ihm.web.action.InscrireAction;
 import fr.insalyon.dasi.ihm.web.serialisation.AfficherListeMediumSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.InscrireSerialisation;
-import fr.insalyon.dasi.ihm.web.serialisation.ProfilClientSerialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.ConnecterSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.Serialisation;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -50,8 +50,8 @@ public class ActionServlet extends HttpServlet {
         if (todo != null) {
             switch (todo) {
                 case "connecter":
-                    action = new AuthentifierClientAction();
-                    serialisation = new ProfilClientSerialisation();
+                    action = new ConnecterAction();
+                    serialisation = new ConnecterSerialisation();
                     break;
                 case "afficherlistemedium":
                     action = new AfficherListeMediumAction();

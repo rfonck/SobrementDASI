@@ -149,13 +149,13 @@ Sinon on renvoie un booléen false.
             JpaUtil.ouvrirTransaction();
             clientDao.creer(client);
             JpaUtil.validerTransaction();
-            resultat = client.getId();
+            resultat = 1L;
             Message.envoyerMail("predictif@gmail.com",client.getEmail(), "Sujet : Bienvenue chez PREDICT’IF",
             "Corps : Bonjour "+ client.getPrenom() + ", nous vous confirmons votre inscription au service PREDICT’IF. \nRendez-vous  vite  sur  notre  site  pour  consulter  votre profil  astrologique  et  profiter  des  dons incroyables de nos mediums");
         } catch (Exception ex) {
             Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service inscrireClient(client)", ex);
             JpaUtil.annulerTransaction();
-            resultat = null;
+            resultat = 0L;
             Message.envoyerMail("predictif@gmail.com",client.getEmail(), "Sujet : Bienvenue chez PREDICT’IF",
             "Corps : Bonjour "+ client.getPrenom() + ", votre inscription au service PREDICT’IF a malencontreusement échoué. \n Merci de recommencer ultérieurement.");
         } finally {
