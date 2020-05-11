@@ -4,10 +4,12 @@ import fr.insalyon.dasi.dao.JpaUtil;
 import fr.insalyon.dasi.ihm.web.action.Action;
 import fr.insalyon.dasi.ihm.web.action.AfficherListeMediumAction;
 import fr.insalyon.dasi.ihm.web.action.ConnecterAction;
+import fr.insalyon.dasi.ihm.web.action.DeconnecterAction;
 import fr.insalyon.dasi.ihm.web.action.InscrireAction;
 import fr.insalyon.dasi.ihm.web.serialisation.AfficherListeMediumSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.InscrireSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.ConnecterSerialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.DeconnecterSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.Serialisation;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -60,6 +62,10 @@ public class ActionServlet extends HttpServlet {
                 case "inscrire":
                     action = new InscrireAction();
                     serialisation = new InscrireSerialisation();
+                    break;
+                case "deconnecter":
+                    action = new DeconnecterAction();
+                    serialisation = new DeconnecterSerialisation();
                     break;
                 case "...":
                     break;
