@@ -27,7 +27,7 @@ public class InscrireSerialisation extends Serialisation {
         JsonObject container = new JsonObject();
         
         container.addProperty("inscription", request.getParameter("inscription"));
-
+        
         response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();

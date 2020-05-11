@@ -10,6 +10,8 @@ import fr.insalyon.dasi.metier.service.Service;
 import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.lang.Integer;
+import static java.util.Calendar.getInstance;
 
 /**
  *
@@ -20,8 +22,6 @@ public class InscrireAction extends Action{
       @Override
     public void executer(HttpServletRequest request) {
         
-        Calendar aujourdhui = Calendar.getInstance();
-        
         String nom_de_famille = request.getParameter("nom_de_famille");
         String prenom = request.getParameter("prenom");
         String adresse_electronique = request.getParameter("adresse_electronique");
@@ -29,7 +29,15 @@ public class InscrireAction extends Action{
         String numero_de_telephone = request.getParameter("numero_de_telephone");
         String adresse_postale = request.getParameter("adresse_postale");
         String mot_de_passe = request.getParameter("mot_de_passe");
-    
+        Calendar date = getInstance();
+        //Integer.parseInt(Date_de_naissance.substring(0, 1))
+        try {
+           date.set(Integer.parseInt(Date_de_naissance.substring(6,10)), Integer.parseInt(Date_de_naissance.substring(3,5))-1, Integer.parseInt(Date_de_naissance.substring(0,2)));
+        }
+        catch (NumberFormatException e)
+        {
+        }
+        
         int num;
         try {
            num = Integer.parseInt(numero_de_telephone);
@@ -39,7 +47,7 @@ public class InscrireAction extends Action{
            num = 0;
         }
 
-        Client client = new Client(prenom,nom_de_famille, aujourdhui, adresse_postale, adresse_electronique, num, mot_de_passe);
+        Client client = new Client(prenom,nom_de_famille, date, adresse_postale, adresse_electronique, num, mot_de_passe);
         
         Service service = new Service();
         long id = service.inscrireClient(client);
