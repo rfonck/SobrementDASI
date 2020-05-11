@@ -27,19 +27,19 @@ public class ConnecterAction extends Action {
         String type = service.identifierUtilisateur(login, password);
         if(type.equals("employe")){
             Employe employe = service.connecterEmploye(login, password);
-            session.setAttribute("type", "employe");
+            session.setAttribute("type", "Employe");
             session.setAttribute("id", employe.getId());
             request.setAttribute("connexion", true);
-            request.setAttribute("type", "employe");
+            request.setAttribute("type", "Employe");
             request.setAttribute("id", employe.getId());
 
         }
         else if(type.equals("client")){
             Client client = service.connecterClient(login, password);
-            session.setAttribute("type", "client");
+            session.setAttribute("type", "Client");
             session.setAttribute("id", client.getId());
             request.setAttribute("connexion", true);
-            request.setAttribute("type", "client");
+            request.setAttribute("type", "Client");
             request.setAttribute("id", client.getId());                
          
         }

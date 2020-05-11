@@ -54,7 +54,8 @@
                             // Exemple: Connexion de Ada Lovelace (ID 1)
                             var type = response.type;
                             $('#notification').html("vous êtes un " + type);  // Message pour le paragraphe de notification
-                        
+                            
+                            document.location.href="accueil"+type+".html";
                         }
                         else {
                             $('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification

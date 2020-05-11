@@ -195,6 +195,9 @@ Sinon on renvoie un NULL
                     }
                 }
             }
+            if(resultat == null){
+               resultat = "echec";
+            }            
             
         } catch (Exception ex) {
             Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service identifierUtilisateur(mail,motDePasse)", ex);
