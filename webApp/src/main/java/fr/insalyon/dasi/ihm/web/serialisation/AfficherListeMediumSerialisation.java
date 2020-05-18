@@ -39,6 +39,7 @@ public class AfficherListeMediumSerialisation extends Serialisation {
             JsonObject medium = new JsonObject();
             medium.addProperty("sexe", listemedium.get(i).getSexe());
             medium.addProperty("denomination", listemedium.get(i).getDenomination());
+            medium.addProperty("id", listemedium.get(i).getId());
             if(listemedium.get(i) instanceof Cartomancien){
                 Cartomancien carto = (Cartomancien) listemedium.get(i);
                 medium.addProperty("type", "cartomancien");
