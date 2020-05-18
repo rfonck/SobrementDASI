@@ -54,7 +54,7 @@ public class InscrireAction extends Action{
         Client client = new Client(prenom,nom_de_famille, date, adresse_postale, adresse_electronique, num, mot_de_passe);
         
         Service service = new Service();
-        long id = service.inscrireClient(client);
+        Long id = service.inscrireClient(client);
         
         
         if (id != 0 && Cbon == 1 ) {

@@ -79,8 +79,6 @@ public class ActionServlet extends HttpServlet {
                     action = new HistoriqueVoyanceClientAction();
                     serialisation = new HistoriqueVoyanceClientSerialisation();
                     break;
-                case "...":
-                    break;
             }
         }
         
