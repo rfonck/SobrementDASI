@@ -11,6 +11,8 @@
         <h1>Liste de mediums</h1>
         <p id ="notification"></p>
         <ul id = "listemedium"></ul>
+        <h1>profil astro</h1>
+        <ul id ="profilastro"></ul>
         <script>
             $(document).ready( function () {
 
@@ -51,8 +53,43 @@
                     .always( function () { // Fonction toujours appelée
                         
                     });
+                    
+                    $('#notification').html("woooooow");
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'profilastro'
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.cbon) {
+        
+                            var signeAstro = response.signeAstro;
+                            var signeChinois = response.signeChinois;
+                            var animalTotem = response.animalTotem;
+                            var couleurBonheur = response.signeChinois;
+                            $('#profilastro').append("<li>Signe arstrologique : "+signeAstro+"</li>");
+                            $('#profilastro').append("<li>Signe Chinois : " +signeChinois+ "</li>");
+                            $('#profilastro').append("<li>couleur porte bonheur : "+couleurBonheur+"</li>");                            
+                            $('#profilastro').append("<li>animal totem : "+animalTotem +"</li>");
+                        
+                        }
+                        else {
+                            $('#notification').html("Erreur d'affichage du profil astroooo"); // Message pour le paragraphe de notification
+                        }
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        
+                    });
                 });
-
         </script>
 
         <!-- Lien vers l'accueil -->

@@ -6,10 +6,12 @@ import fr.insalyon.dasi.ihm.web.action.AfficherListeMediumAction;
 import fr.insalyon.dasi.ihm.web.action.ConnecterAction;
 import fr.insalyon.dasi.ihm.web.action.DeconnecterAction;
 import fr.insalyon.dasi.ihm.web.action.InscrireAction;
+import fr.insalyon.dasi.ihm.web.action.ProfilAstroAction;
 import fr.insalyon.dasi.ihm.web.serialisation.AfficherListeMediumSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.InscrireSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.ConnecterSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.DeconnecterSerialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.ProfilAstroSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.Serialisation;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -66,6 +68,10 @@ public class ActionServlet extends HttpServlet {
                 case "deconnecter":
                     action = new DeconnecterAction();
                     serialisation = new DeconnecterSerialisation();
+                    break;
+                case "profilastro":
+                    action = new ProfilAstroAction();
+                    serialisation = new ProfilAstroSerialisation();
                     break;
                 case "...":
                     break;
