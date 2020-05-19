@@ -21,6 +21,23 @@ public class SeanceVoyanceDao {
         em.persist(seance);
     }
     
+    public Boolean creerDemande(Client client, SeanceVoyance seance) {
+        EntityManager em = JpaUtil.obtenirContextePersistance();
+        
+        TypedQuery<SeanceVoyance> query = em.createQuery("SELECT c FROM SeanceVoyance c WHERE c.client = :clt and c.enCours = :bol", SeanceVoyance.class);
+        query.setParameter("clt", client);
+        query.setParameter("bol", true);
+        if( query.getResultList().size() == 0)
+        {
+            em.persist(seance);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
     public SeanceVoyance chercherParId(Long seanceVoyanceId) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         return em.find(SeanceVoyance.class, seanceVoyanceId); // renvoie null si l'identifiant n'existe pas

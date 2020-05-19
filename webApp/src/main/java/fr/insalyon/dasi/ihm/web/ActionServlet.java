@@ -5,6 +5,7 @@ import fr.insalyon.dasi.ihm.web.action.Action;
 import fr.insalyon.dasi.ihm.web.action.AfficherListeMediumAction;
 import fr.insalyon.dasi.ihm.web.action.ConnecterAction;
 import fr.insalyon.dasi.ihm.web.action.DeconnecterAction;
+import fr.insalyon.dasi.ihm.web.action.DemanderVoyanceAction;
 import fr.insalyon.dasi.ihm.web.action.HistoriqueVoyanceClientAction;
 import fr.insalyon.dasi.ihm.web.action.InscrireAction;
 import fr.insalyon.dasi.ihm.web.action.ProfilAstroAction;
@@ -12,6 +13,7 @@ import fr.insalyon.dasi.ihm.web.serialisation.AfficherListeMediumSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.InscrireSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.ConnecterSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.DeconnecterSerialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.DemanderVoyanceSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.HistoriqueVoyanceClientSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.ProfilAstroSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.Serialisation;
@@ -78,6 +80,10 @@ public class ActionServlet extends HttpServlet {
                 case "histovoyanceclient":
                     action = new HistoriqueVoyanceClientAction();
                     serialisation = new HistoriqueVoyanceClientSerialisation();
+                    break;
+                case "demandervoyance":
+                    action = new DemanderVoyanceAction();
+                    serialisation = new DemanderVoyanceSerialisation();
                     break;
             }
         }

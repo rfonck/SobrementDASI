@@ -94,10 +94,10 @@ public class Main {
         System.out.println("  " );
                 
         Medium aSolliciter = service.rechercherMedium("Mme Irma");
-        Employe apte = service.solliciterMedium(aSolliciter, client1);
+        SeanceVoyance apte = service.solliciterMedium(aSolliciter, client1);
         
         System.out.println("       L'employé " + apte.toString() + " va interpréter ce rôle");
-        
+        service.inscrireDemande(client1, apte);
        
         System.out.println("  " ); 
         System.out.println("4. L'employé se connecte " ); 

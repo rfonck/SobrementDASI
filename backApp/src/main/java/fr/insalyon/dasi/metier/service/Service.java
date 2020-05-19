@@ -110,6 +110,21 @@ public class Service {
         return resultat;
     }
 
+        public Medium rechercherMediumParId(Long id) {
+        Medium resultat = null;
+        JpaUtil.creerContextePersistance();
+        try {
+            resultat = mediumDao.chercherParId(id);
+        } catch (Exception ex) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service rechercherMediumParId(id)", ex);
+            resultat = null;
+        } finally {
+            JpaUtil.fermerContextePersistance();
+        }
+        return resultat;
+    }
+
+    
     public List<Client> listerClients() {
         List<Client> resultat = null;
         JpaUtil.creerContextePersistance();
@@ -330,7 +345,7 @@ Un premier tri est fait selon le genre, puis l’employé avec le moins de consu
      * @return 
 **/
 
-    public Employe solliciterMedium (Medium medium, Client client){
+    public SeanceVoyance solliciterMedium (Medium medium, Client client){
         Employe employe = null;
         JpaUtil.creerContextePersistance();
         try {
@@ -343,10 +358,29 @@ Un premier tri est fait selon le genre, puis l’employé avec le moins de consu
         } finally {
             JpaUtil.fermerContextePersistance();
         }
-
-        return employe;
+        SeanceVoyance seance = new SeanceVoyance(client, employe, medium);
+        return seance;
     }
     
+    
+        public Boolean inscrireDemande (Client client,SeanceVoyance seance){
+        Boolean bol = true;
+        JpaUtil.creerContextePersistance();
+        try {
+            JpaUtil.ouvrirTransaction();
+            bol = seanceVoyanceDao.creerDemande(client,seance);
+            JpaUtil.validerTransaction();
+        } catch (Exception ex) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service SolliciterMedium", ex);
+        } finally {
+            JpaUtil.fermerContextePersistance();
+        }
+
+        return bol;
+    }
+    
+        
+        
     public Long inscrireSeanceVoyance(SeanceVoyance seance) {
         Long resultat = null;
         JpaUtil.creerContextePersistance();

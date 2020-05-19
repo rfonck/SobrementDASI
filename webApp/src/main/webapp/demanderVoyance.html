@@ -25,7 +25,9 @@ and open the template in the editor.
         </style>
     </head>
     <body>
+        <a href="accueilClient.html">retoru à l'accueil</a>
         <table id="listemedium">
+            
             <tr><td>Dénomination</td><td>Sexe</td><td>présentation</td></tr>
             
             
@@ -79,8 +81,42 @@ and open the template in the editor.
                 
         function demande(id)   // declaration de la fonction avec un argument
             {
-               alert("demande du medium d'id : "+ id);
-            }
+                
+                    // Récupération de la valeur des champs du formulaire
+
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'demandervoyance',
+                            id: id
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.Cbon) {
+                           
+                           alert("demande du medium d'id : "+ id);  
+                        }
+                        else
+                        {
+                           alert("erreur dans la matrice !");                       
+                        }
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée  
+                    });
+                   
+             
+                
+                
+
+            };
         </script>
     </body>
 </html>
