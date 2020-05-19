@@ -114,7 +114,10 @@ public class Service {
         Medium resultat = null;
         JpaUtil.creerContextePersistance();
         try {
+            JpaUtil.ouvrirTransaction();
             resultat = mediumDao.chercherParId(id);
+            JpaUtil.validerTransaction();
+
         } catch (Exception ex) {
             Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service rechercherMediumParId(id)", ex);
             resultat = null;
@@ -124,6 +127,23 @@ public class Service {
         return resultat;
     }
 
+        
+        public Employe rechercherEmployeParId(Long id) {
+        Employe resultat = null;
+        JpaUtil.creerContextePersistance();
+        try {
+            JpaUtil.ouvrirTransaction();
+            resultat = employeDao.chercherParId(id);
+            JpaUtil.validerTransaction();
+
+        } catch (Exception ex) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service rechercherMediumParId(id)", ex);
+            resultat = null;
+        } finally {
+            JpaUtil.fermerContextePersistance();
+        }
+        return resultat;
+    }
     
     public List<Client> listerClients() {
         List<Client> resultat = null;
@@ -312,6 +332,7 @@ Ce sont des objets dont les données sont stockées dans la base de donnée du s
         return resultat;
     }
   
+    
     /**
     Service :  consulterHistoriqueSeances(Client client)
 
@@ -346,19 +367,23 @@ Un premier tri est fait selon le genre, puis l’employé avec le moins de consu
 **/
 
     public SeanceVoyance solliciterMedium (Medium medium, Client client){
-        Employe employe = null;
+        Employe employe = null; 
+        SeanceVoyance seance = null;
         JpaUtil.creerContextePersistance();
         try {
+            JpaUtil.ouvrirTransaction();
             employe = employeDao.rechercheEmployeApte(medium);
-            String num = Integer.toString(employe.getNumTel());
-            Message.envoyerNotification( num ,"Pour : "+ employe.getprenom() + " "+ employe.getNom() + ", Tel : "+num +" \n Message : Bonjour "+ employe.getprenom() + ". Consultation requise pour "+ client.getprenom() +" " + client.getprenom() + " \nMédium à incarner : " + medium.getDenomination());
-        } catch (Exception ex) {
+            JpaUtil.validerTransaction();
+            seance = new SeanceVoyance(client, employe, medium);
+           } catch (Exception ex) {
             Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service SolliciterMedium", ex);
             employe = null;
         } finally {
             JpaUtil.fermerContextePersistance();
         }
-        SeanceVoyance seance = new SeanceVoyance(client, employe, medium);
+        String num = Integer.toString(employe.getNumTel());
+        Message.envoyerNotification( num ,"Pour : "+ employe.getprenom() + " "+ employe.getNom() + ", Tel : "+num +" \n Message : Bonjour "+ employe.getprenom() + ". Consultation requise pour "+ client.getprenom() +" " + client.getprenom() + " \nMédium à incarner : " + medium.getDenomination());
+        
         return seance;
     }
     
@@ -411,6 +436,22 @@ Un premier tri est fait selon le genre, puis l’employé avec le moins de consu
      * @return 
  **/
 
+    public SeanceVoyance TestDemandeEntrante(Employe employe){
+    SeanceVoyance seance = null;
+    JpaUtil.creerContextePersistance();
+        try {
+            JpaUtil.ouvrirTransaction();
+            seance = seanceVoyanceDao.getDemandeEntrante(employe);
+            JpaUtil.validerTransaction();
+        } catch (Exception ex) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service TestDemandeEntrante(employe)", ex);
+            JpaUtil.annulerTransaction();
+        } finally {
+            JpaUtil.fermerContextePersistance();
+        }
+        return seance; 
+    }
+    
     public SeanceVoyance AccepterConsultation(Client client, Employe employe, Medium medium){
     SeanceVoyance seance = new SeanceVoyance(client, employe, medium);
     JpaUtil.creerContextePersistance();

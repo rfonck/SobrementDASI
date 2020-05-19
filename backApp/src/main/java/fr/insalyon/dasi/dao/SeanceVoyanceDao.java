@@ -38,10 +38,23 @@ public class SeanceVoyanceDao {
         }
     }
     
+    public SeanceVoyance getDemandeEntrante(Employe employe) {
+    EntityManager em = JpaUtil.obtenirContextePersistance();
+    TypedQuery<SeanceVoyance> query = em.createQuery("SELECT c FROM SeanceVoyance c WHERE c.employe = :employe and c.enCours = :bol", SeanceVoyance.class);
+    query.setParameter("employe", employe);
+    query.setParameter("bol", true);
+    TypedQuery<SeanceVoyance> query2 = em.createQuery("DELETE FROM SeanceVoyance c WHERE c.employe = :employe and c.enCours = :bol", SeanceVoyance.class);
+    SeanceVoyance seance = query.getSingleResult();
+    query2.setParameter("employe", employe);
+    query2.setParameter("bol", true);
+    query2.executeUpdate();
+    return seance;
+    }
+    
     public SeanceVoyance chercherParId(Long seanceVoyanceId) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         return em.find(SeanceVoyance.class, seanceVoyanceId); // renvoie null si l'identifiant n'existe pas
-    }
+    }    
     
     public List<SeanceVoyance> listerSeanceVoyance() {
         EntityManager em = JpaUtil.obtenirContextePersistance();

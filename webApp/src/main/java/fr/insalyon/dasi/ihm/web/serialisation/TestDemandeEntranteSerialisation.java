@@ -17,22 +17,19 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author rfonc
  */
-public class DemanderVoyanceSerialisation extends Serialisation {
+public class TestDemandeEntranteSerialisation extends Serialisation {
     
     
   @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         JsonObject container = new JsonObject();
-        
+             
         container.addProperty("Cbon", (Boolean) request.getAttribute("Cbon"));
-       
         response.setContentType("application/json;charset=UTF-8");
-        
         PrintWriter out = response.getWriter();
         Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
         gson.toJson(container, out);
         out.close();
     }
-
 }
