@@ -24,8 +24,19 @@ public class TestDemandeEntranteSerialisation extends Serialisation {
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         JsonObject container = new JsonObject();
-             
-        container.addProperty("Cbon", (Boolean) request.getAttribute("Cbon"));
+        if((Boolean) request.getAttribute("Cbon"))
+        {
+            container.addProperty("Cbon", (Boolean) request.getAttribute("Cbon"));
+            container.addProperty("medium", (Long) request.getAttribute("mediumid"));
+            container.addProperty("client", (Long) request.getAttribute("clientid"));
+            
+        }
+        else
+        {
+            container.addProperty("Cbon", (Boolean) request.getAttribute("Cbon"));
+            
+        }
+
         response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();

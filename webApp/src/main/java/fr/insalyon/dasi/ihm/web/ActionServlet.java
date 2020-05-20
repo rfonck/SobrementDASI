@@ -7,6 +7,7 @@ import fr.insalyon.dasi.ihm.web.action.ConnecterAction;
 import fr.insalyon.dasi.ihm.web.action.DeconnecterAction;
 import fr.insalyon.dasi.ihm.web.action.DemanderVoyanceAction;
 import fr.insalyon.dasi.ihm.web.action.HistoriqueVoyanceClientAction;
+import fr.insalyon.dasi.ihm.web.action.InformationDemandeAction;
 import fr.insalyon.dasi.ihm.web.action.InscrireAction;
 import fr.insalyon.dasi.ihm.web.action.ProfilAstroAction;
 import fr.insalyon.dasi.ihm.web.action.TestDemandeEntranteAction;
@@ -16,6 +17,7 @@ import fr.insalyon.dasi.ihm.web.serialisation.ConnecterSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.DeconnecterSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.DemanderVoyanceSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.HistoriqueVoyanceClientSerialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.InformationDemandeSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.ProfilAstroSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.Serialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.TestDemandeEntranteSerialisation;
@@ -90,6 +92,10 @@ public class ActionServlet extends HttpServlet {
                 case "testdemandeentrante":
                     action = new TestDemandeEntranteAction();
                     serialisation = new TestDemandeEntranteSerialisation();
+                    break;
+                case "informationsdemande":
+                    action = new InformationDemandeAction();
+                    serialisation = new InformationDemandeSerialisation();
                     break;
             }
         }

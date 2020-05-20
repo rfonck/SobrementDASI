@@ -13,10 +13,10 @@ and open the template in the editor.
     </head>
     <body>
         <p><a href="deconnectioncosmique.html">Deconnection</a></p>
+        <p id="notification">blabla</p>
         <script>
             $(document).ready( function () {
 
-                    $('#notification').html("Affichermedium..."); // Message pour le paragraphe de notification
 
                     // Récupération de la valeur des champs du formulaire
 
@@ -31,15 +31,14 @@ and open the template in the editor.
                     })
                     .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
                         console.log('Response',response); // LOG dans Console Javascript
-                        if (response.etataffichage) {
-                          
+                        if (response.Cbon) {
+                          informationsdemande(response.client, response.medium)
                             
                         }
                         else {
-                            $('#notification').html("Erreur d'affichage de la liste des mediums"); // Message pour le paragraphe de notification
+                            $('#notification').html("Pas de demande entrante"); // Message pour le paragraphe de notification
                         }                            
-                            $('#notification').html("Affichage des mediums :");  // Message pour le paragraphe de notification
-                        
+
 
                     })
                     .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
@@ -51,6 +50,40 @@ and open the template in the editor.
                     });
                     
             });
+                            
+        function informationsdemande(idclient, idmedium)   // declaration de la fonction avec un argument
+            {
+
+                    // Récupération de la valeur des champs du formulaire
+
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'informationsdemande',
+                            medium : idmedium ,
+                            client : idclient
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                       
+                        alert("c'est bon !");
+
+
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        
+                    });
+                
+
+            };
         </script>
     </body>
 </html>

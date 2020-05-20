@@ -32,11 +32,13 @@ public class TestDemandeEntranteAction extends Action {
         SeanceVoyance seance = service.TestDemandeEntrante(employe);
         if(seance != null)
         {
-            request.setAttribute("Cbon", true); 
+            request.setAttribute("Cbon", (Boolean) true); 
+            request.setAttribute("mediumid", seance.getMedium().getId());
+            request.setAttribute("clientid", seance.getClient().getId());
         }
         else
         {
-            request.setAttribute("Cbon", false);
+            request.setAttribute("Cbon", (Boolean)  false);
         }
         
 
