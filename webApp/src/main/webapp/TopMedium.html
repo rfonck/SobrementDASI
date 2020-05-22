@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Top Medium !</title>
+        <!-- Librairie Javascript: jQuery (v3.4.1) -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    </head>
+    <body>
+        <h1>Top Medium</h1>
+        <div id ="top">
+            
+        </div>
+        <script>
+            $(document).ready( function () {
+                 
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'topmedium'
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        $('#top').append("<aside>");
+                            $('#top').append("<table><tr><td>top medium</td></tr>");
+                            for(let i =0 ; i< response.topmedium.length; i++)
+                            {
+                            $('#top').append("<tr><td>"+response.topmedium[i].denomination+"</td></tr>");
+                            }
+               
+                            $('#top').append("</table>");                       
+                        $('#top').append("</aside>");
+                        $('#top').append("<aside>");
+                            $('#top').append("<table><tr><td>nom medium</td><td>nb consultations</td></tr>");
+                            $('#top').append("<tr><td>"+response.repartitionmedium[0].medium+"</td><td>"+response.repartitionmedium[0].nb+"</td></tr>");
+                            $('#top').append("<tr><td>"+response.repartitionmedium[1].medium+"</td><td>"+response.repartitionmedium[1].nb+"</td></tr>");
+                            $('#top').append("<tr><td>"+response.repartitionmedium[2].medium+"</td><td>"+response.repartitionmedium[2].nb+"</td></tr>");
+                            $('#top').append("<tr><td>"+response.repartitionmedium[3].medium+"</td><td>"+response.repartitionmedium[3].nb+"</td></tr>");
+                            $('#top').append("<tr><td>"+response.repartitionmedium[4].medium+"</td><td>"+response.repartitionmedium[4].nb+"</td></tr>");
+                            $('#top').append("</table>");                   
+                        $('#top').append("</aside>");
+                        $('#top').append("<aside>");
+                            $('#top').append("<table><tr><td>nom employe</td><td>nb consultations</td></tr>");
+                            for(let i = 0; i< response.nbemploye ; i++)
+                            {
+                                $('#top').append("<tr><td>"+response.repartitionemploye[i].employe+"</td><td>"+response.repartitionemploye[0].nb+"</td></tr>");
+                            }
+                            $('#top').append("</table>"); 
+                        
+                        
+                        
+                        
+                        $('#top').append("</aside>");
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        
+                    });
+                });
+        </script>
+    </body>
+</html>

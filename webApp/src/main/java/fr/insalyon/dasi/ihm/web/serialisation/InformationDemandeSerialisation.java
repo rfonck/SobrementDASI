@@ -39,6 +39,7 @@ public class InformationDemandeSerialisation extends Serialisation {
         container.addProperty("SigneChinois", client.getSigneChinois());
         container.addProperty("AnimalTotoem", client.getAnimalTotem());
         container.addProperty("CouleurBonheur", client.getCouleurBonheur());
+        container.addProperty("TailleListe", histo.size());
         JsonArray liste = new JsonArray();
         for(int i=0; i<histo.size(); i++) {
             JsonObject seance = new JsonObject();

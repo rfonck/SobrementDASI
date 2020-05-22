@@ -8,12 +8,36 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Accueil Employe</title>
+        <style>
+            #profil1
+            {
+                width:69%;
+                display : inline-block;
+            }
+            #profil2
+            {
+                width:29%;
+            }            
+        </style>
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     </head>
     <body>
         <p><a href="deconnectioncosmique.html">Deconnection</a></p>
         <p id="notification">blabla</p>
+        <article id="profil1">
+            <div >
+                <a href="TopMedium.html">Activité</a>
+                <button id="accepter" value="accepter">               
+            </div>
+            
+           
+        </article>
+        <article id="profil2">
+
+            
+        </article>        
+        
         <script>
             $(document).ready( function () {
 
@@ -70,9 +94,15 @@ and open the template in the editor.
                     .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
                         console.log('Response',response); // LOG dans Console Javascript
                        
-                        alert("c'est bon !");
+                        $('#profil2').append("<aside><table><tr><td> <p>Signe astrologique</p></td><td><p>"+response.SigneAstrologique+"</p></td></tr>"+"<tr><td> <p>Signe chinois</p></td><td><p>"+response.SigneChinois+"</p></td></tr><tr><td> <p>Animal Totem</p></td><td><p>"+response.AnimalTotem+"</p></td></tr>"+"<tr><td> <p>Couleur de bonheur</p></td><td><p>"+response.CouleurBonheur+"</p></td></tr>");
+                        
+                        $('#profil1').append("<table>");
 
-
+                        var taille = response.TailleListe;
+                        for (let i=0;i<taille;i++){
+                            $('#profil1').append("<tr><td>"+response.seancevoyance[i].date+" </td><td> "+response.seancevoyance[i].medium+"</td></tr>");
+                        }
+                        $('#profil1').append("</table>");
                     })
                     .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
                         console.log('Error',error); // LOG dans Console Javascript
@@ -81,8 +111,6 @@ and open the template in the editor.
                     .always( function () { // Fonction toujours appelée
                         
                     });
-                
-
             };
         </script>
     </body>

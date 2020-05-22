@@ -11,6 +11,7 @@ import fr.insalyon.dasi.ihm.web.action.InformationDemandeAction;
 import fr.insalyon.dasi.ihm.web.action.InscrireAction;
 import fr.insalyon.dasi.ihm.web.action.ProfilAstroAction;
 import fr.insalyon.dasi.ihm.web.action.TestDemandeEntranteAction;
+import fr.insalyon.dasi.ihm.web.action.TopMediumAction;
 import fr.insalyon.dasi.ihm.web.serialisation.AfficherListeMediumSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.InscrireSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.ConnecterSerialisation;
@@ -21,6 +22,7 @@ import fr.insalyon.dasi.ihm.web.serialisation.InformationDemandeSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.ProfilAstroSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.Serialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.TestDemandeEntranteSerialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.TopMediumSerialisation;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -96,6 +98,10 @@ public class ActionServlet extends HttpServlet {
                 case "informationsdemande":
                     action = new InformationDemandeAction();
                     serialisation = new InformationDemandeSerialisation();
+                    break;
+                case "topmedium":
+                    action = new TopMediumAction();
+                    serialisation = new TopMediumSerialisation();
                     break;
             }
         }

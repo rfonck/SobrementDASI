@@ -6,13 +6,75 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Présentation</title>
+        <style>
+            body{
+                background: rgb(20,25,152);
+                background: linear-gradient(90deg, rgba(20,25,152,1) 0%, rgba(9,9,121,1) 35%, rgba(12,14,72,1) 100%);
+            }
+            header{
+                position:absolute;
+                top:0px;
+                left:0px;
+                height:55px;
+                width:100%;
+                margin-left:0px;
+                margin-right:0px;
+                margin-top:0px;
+                background: rgba(12,14,72,1);
+            }
+            h1
+            {
+                text-align:center;
+                color: white;
+            }
+            p.pres{
+                color:white;
+                width:50%;
+                display : inline-block;
+                padding: 20px;
+            }
+            article
+            {
+                margin-top :100px;
+                height:400px;
+            }
+            footer
+            {
+                justify-content: space-around;
+                height: 200px;
+                display:flex;
+            }
+            div.button
+            {
+                background-color: indigo;
+                height:50px;
+                box-radius: 3px;
+                width:150px;
+            }
+            p.button{
+                text-align:center;
+                color:white;
+                
+            }
+            
+            
+            
+        </style>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>Présentation</h1>
-        <button  onclick="document.location.href='login.html'"> Se connecter</button>
-        <button  onclick="document.location.href='inscription.html'">  S'inscrire</button>    
+        <header>
+            <h1>Predict'if</h1>
+        </header>
+        <article>
+            <p class="pres">Fusce in hendrerit felis, et pretium arcu. Nulla dictum neque massa, eu commodo neque dictum et. Sed dapibus, dolor non volutpat accumsan, urna augue tempus purus, tempus congue ligula metus vitae nisl. Quisque fermentum vitae urna id convallis. Sed ac tellus pulvinar, malesuada lectus a, dignissim nulla. Donec vel elementum erat, non molestie neque. Vestibulum dignissim congue dolor rhoncus finibus. Nunc aliquam, ex vel malesuada consectetur, ex enim pulvinar tortor, eget commodo lacus ipsum eu erat. Suspendisse massa mauris, tristique quis fringilla sit amet, mollis a velit. Integer vitae arcu nec est imperdiet luctus. Duis vitae porttitor purus, vel hendrerit felis. Morbi libero purus, consectetur in imperdiet et, ornare vitae nisl. Morbi.</p>
+            <img src='img/irma.png'>
+        </article>
+        <footer>
+            <div class="button" onclick="document.location.href='login.html'"> <p class="button"> Se connecter </p> </div>
+        <div class="button" onclick="document.location.href='inscription.html'"> <p class="button"> S'inscrire </p> </div>    
+        </footer>
     </body>
 </html>
