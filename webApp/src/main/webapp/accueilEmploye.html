@@ -26,9 +26,10 @@ and open the template in the editor.
         <p><a href="deconnectioncosmique.html">Deconnection</a></p>
         <p id="notification">blabla</p>
         <article id="profil1">
-            <div >
-                <a href="TopMedium.html">Activité</a>
-                <button id="accepter" value="accepter">               
+            <a href="TopMedium.html">Activité</a>
+            <div id="tjla" >
+                
+                         
             </div>
             
            
@@ -56,8 +57,7 @@ and open the template in the editor.
                     .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
                         console.log('Response',response); // LOG dans Console Javascript
                         if (response.Cbon) {
-                          informationsdemande(response.client, response.medium)
-                            
+                          informationsdemande(response.client, response.medium) 
                         }
                         else {
                             $('#notification').html("Pas de demande entrante"); // Message pour le paragraphe de notification
@@ -93,7 +93,7 @@ and open the template in the editor.
                     })
                     .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
                         console.log('Response',response); // LOG dans Console Javascript
-                       
+                       $('#tjla').append("<a onclick='accepterdemande("+idclient+","+idmedium+")'> Accepter la demande </a>");
                         $('#profil2').append("<aside><table><tr><td> <p>Signe astrologique</p></td><td><p>"+response.SigneAstrologique+"</p></td></tr>"+"<tr><td> <p>Signe chinois</p></td><td><p>"+response.SigneChinois+"</p></td></tr><tr><td> <p>Animal Totem</p></td><td><p>"+response.AnimalTotem+"</p></td></tr>"+"<tr><td> <p>Couleur de bonheur</p></td><td><p>"+response.CouleurBonheur+"</p></td></tr>");
                         
                         $('#profil1').append("<table>");
@@ -103,6 +103,36 @@ and open the template in the editor.
                             $('#profil1').append("<tr><td>"+response.seancevoyance[i].date+" </td><td> "+response.seancevoyance[i].medium+"</td></tr>");
                         }
                         $('#profil1').append("</table>");
+                         
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        
+                    });
+            };
+ function accepterdemande(idclient, idmedium)   // declaration de la fonction avec un argument
+            {
+
+                    // Récupération de la valeur des champs du formulaire
+
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'accepterdemande',
+                            medium : idmedium ,
+                            client : idclient
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                       
+                        $('#tjla').html("<a href='terminerSeance.html'> terminer la séance </a>"); 
                     })
                     .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
                         console.log('Error',error); // LOG dans Console Javascript

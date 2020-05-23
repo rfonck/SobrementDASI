@@ -6,32 +6,126 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        
         <meta charset="UTF-8">
         <title>Inscription cosmique</title>
+        
+        <style>
+            body{
+                background: rgb(20,25,152);
+                background: linear-gradient(90deg, rgba(20,25,152,1) 0%, rgba(9,9,121,1) 35%, rgba(12,14,72,1) 100%);
+            }
+            header
+            {
+                height:50px;
+                width:100%;
+                position:absolute;
+                top:0px;
+                left:0px;
+                background: rgba(12,14,72,1);
+                margin-bottom:50px;
+                display: flex;
+                justify-content: space-around;
+            }
+            div.gauche
+            {     
+                margin-top:10px;
+                margin-left:20px;                
+                border-radius :2px;
+                border:2px solid white;
+                width:100px;
+                height:30px;
+                float:left;
+            }
+            div.droite
+            {
+                margin-top:10px;
+                margin-right:20px;
+                border-radius :2px;
+                border:2px solid white;
+                width:100px;
+                height:30px;
+                float:right;
+            }
+            h2
+            {
+               width:200px;
+               text-align:center;
+               color:white;   
+            }
+            p.head
+            {
+               margin-top:5px;
+               padding:auto;
+               text-align:center;
+               color:white;   
+            }
+            
+            div.form
+            {
+                width:300px;
+            }
+            input
+            {
+                margin-top:20px;
+                width:250px;
+                heigth: 30px;
+                margin-left:25px;
+                
+            }
+            button
+            {
+                margin-top:20px;
+                width:150px;
+                margin-left:75px;
+                
+            }
+            h1
+            {
+                margin-top:50px;
+                margin-bottom:70px;
+                color:white;
+                text-align:center;
+            }
+            div.ctn
+            {
+                display: flex;
+                justify-content: space-around;  
+            }
+        </style>
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     </head>
     <body>
+        <header>
+            <div class="gauche"><a href="presentation.html"><p class='head'>présentation</p></a></div>
+            <div><h2>Predict'IF</h2></div>
+            <div class="droite"><a href="login.html"><p class='head'>se connecter</p></a></div>
+        </header>
         <p id="notification">blablabla</p>
         
         <h1>Inscription</h1>
-        <input type="text" id="champ_nom_de_famille" value="nom de famille" />
-        <br/>
-        <input type="text" id="champ_prenom" value="prénom" />
-        <br/>
-        <input type="text" id="champ_adresse_electronique" value="Adresse électronique" />
-        <br/>
-        <input type="date" id="champ_Date_de_naissance"  />
-        <br/>
-        <input type="text" id="champ_numero_de_telephone" value="numéro de téléphone"/>
-        <br/>
-        <input type="text" id="champ_adresse_postale" value="adresse postale"/>
-        <br/>
-        <input type="password" id="champ_mot_de_passe" value="mot de passe"/>
-        <br/>
-        
-       <button id="bouton_inscription">inscription</button>
+        <div class="ctn">
+            <div class="form">
+                <input type="text" id="champ_nom_de_famille" value="nom de famille" />
+                <br/>
+                <input type="text" id="champ_prenom" value="prénom" />
+                <br/>
+                <input type="text" id="champ_adresse_electronique" value="Adresse électronique" />
+                <br/>
+                <input type="date" id="champ_Date_de_naissance"  />
+                <br/>
+                <input type="text" id="champ_numero_de_telephone" value="numéro de téléphone"/>
+                <br/>
+                <input type="text" id="champ_adresse_postale" value="adresse postale"/>
+                <br/>
+                <input type="password" id="champ_mot_de_passe" value="mot de passe"/>
+                <br/>
 
+                <button id="bouton_inscription">inscription</button>
+            </div>
+        </div>
+        
         <script>
             $(document).ready( function () {
                 $('#bouton_inscription').on( 'click', function () { // Fonction appelée lors du clic sur le bouton

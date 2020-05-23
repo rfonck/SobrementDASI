@@ -1,51 +1,45 @@
 <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Deconnexion Cosmique</title>
-        <script>
-            body
-            {
-                background: rgb(255,255,255);
-                background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(108,73,214,1) 100%);    
-            }    
-            h1
-            {
-                color:white;
-                margin-top:30%;
-                text-align:center;
-            }
-            
-        </script>
+        <title>Terminer voyance</title>
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <style>
+
+            
+        </style>
     </head>
     <body>
-
-        <h1>Deconnexion Cosmique</h1>
-
+        <input id="commentaire" type="text">
+        <input type="button" onclick="terminerseance()" value="terminer la séance">
         <script>
-            $(document).ready( function () {
+          
+        let commentaire = document.getElementById("commentaire").value;
+          
+        function terminerseance()   // declaration de la fonction avec un argument
+            {
 
-                    $('#notification').html("Deconnexion..."); // Message pour le paragraphe de notification
+                    // Récupération de la valeur des champs du formulaire
 
                     // Appel AJAX
                     $.ajax({
                         url: './ActionServlet',
                         method: 'POST',
                         data: {
-                            todo: 'deconnecter'
+                            todo: 'terminerseance',
+                            commentaire : $('#commentaire').val()
                         },
                         dataType: 'json'
                     })
                     .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
                         console.log('Response',response); // LOG dans Console Javascript
-                        if (response.deconnexion) {
-                            //$('#notification').html("Connexion OK");  // Message pour le paragraphe de notification
-                            // TODO: afficher les informations du client dans la notification
-                            // Exemple: Connexion de Ada Lovelace (ID 1)
-                            document.location.href="login.html";
-                        }
+                        document.location.href="deconnectioncosmique.html";
                     })
                     .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
                         console.log('Error',error); // LOG dans Console Javascript
@@ -54,8 +48,7 @@
                     .always( function () { // Fonction toujours appelée
                         
                     });
-                });
-      
+            };
         </script>
     </body>
 </html>

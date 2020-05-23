@@ -11,27 +11,106 @@ and open the template in the editor.
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <style>
-            table
+            body
             {
-                
+                background: rgb(255,255,255);
+                background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(108,73,214,1) 100%);    
+            }
+            header
+            {
+                height:50px;
+                width:100%;
+                position:absolute;
+                top:0px;
+                left:0px;
+                background: rgba(12,14,72,1);
+                margin-bottom:50px;
+                display: flex;
+                justify-content: space-around;
+            }
+
+            div.droite
+            {
+                margin-top:10px;
+                margin-right:20px;
+                border-radius :2px;
+                border:2px solid white;
+                width:100px;
+                height:30px;
+                float:right;
+            }
+            h2
+            {
+               width:200px;
+               text-align:center;
+               color:white;   
+            }
+            p.head
+            {
+               margin-top:5px;
+               padding:auto;
+               text-align:center;
+               color:white;   
+            }
+            div.gauche
+            {     
+                margin-top:10px;
+                margin-left:20px;                
+                border-radius :2px;
+                border:2px solid white;
+                width:100px;
+                height:30px;
+                float:left;
+            }
+            h1
+            {
+                color:grey;
+                text-align:center;
+                margin-top:50px;
+                margin-bottom:70px;
                 
             }
-            
-            td 
+            aside
+            {
+                display: flex;
+                justify-content: space-around;  
+                width:500px;
+                background-color: lightpink;
+            }
+            div.ctn
+            {
+                display: flex;
+                justify-content: space-around;  
+            }
+            table
+            {
+                background-color:white;
+                margin-top:50px;
+                margin-bottom:50px;
+            }
+            td
             {
                 padding:10px;
             }
+
             
         </style>
     </head>
     <body>
-        <a href="accueilClient.html">retoru à l'accueil</a>
-        <table id="listemedium">
-            
-            <tr><td>Dénomination</td><td>Sexe</td><td>présentation</td></tr>
-            
-            
-        </table>
+        <header>
+            <div class="gauche"><a href="accueilClient.html"><p class='head'>Accueil</p></a></div>
+            <div><h2>Predict'IF</h2></div>
+            <div class="droite"><a href="deconnectioncosmique.html"><p class='head'>se déconnecter</p></a></div>
+        </header>
+        <h1>Demande de consultation</h1>
+        <div class="ctn">
+            <table id="listemedium">
+
+                <tr><td>Dénomination</td><td>Sexe</td><td>présentation</td></tr>
+
+
+            </table>
+        </div>
         <script>
            $(document).ready( function () {
 

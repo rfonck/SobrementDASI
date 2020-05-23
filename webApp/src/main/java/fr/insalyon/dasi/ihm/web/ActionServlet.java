@@ -1,6 +1,7 @@
 package fr.insalyon.dasi.ihm.web;
 
 import fr.insalyon.dasi.dao.JpaUtil;
+import fr.insalyon.dasi.ihm.web.action.AccepterDemandeAction;
 import fr.insalyon.dasi.ihm.web.action.Action;
 import fr.insalyon.dasi.ihm.web.action.AfficherListeMediumAction;
 import fr.insalyon.dasi.ihm.web.action.ConnecterAction;
@@ -10,8 +11,10 @@ import fr.insalyon.dasi.ihm.web.action.HistoriqueVoyanceClientAction;
 import fr.insalyon.dasi.ihm.web.action.InformationDemandeAction;
 import fr.insalyon.dasi.ihm.web.action.InscrireAction;
 import fr.insalyon.dasi.ihm.web.action.ProfilAstroAction;
+import fr.insalyon.dasi.ihm.web.action.TerminerSeanceAction;
 import fr.insalyon.dasi.ihm.web.action.TestDemandeEntranteAction;
 import fr.insalyon.dasi.ihm.web.action.TopMediumAction;
+import fr.insalyon.dasi.ihm.web.serialisation.AccepterDemandeSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.AfficherListeMediumSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.InscrireSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.ConnecterSerialisation;
@@ -21,6 +24,7 @@ import fr.insalyon.dasi.ihm.web.serialisation.HistoriqueVoyanceClientSerialisati
 import fr.insalyon.dasi.ihm.web.serialisation.InformationDemandeSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.ProfilAstroSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.Serialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.TerminerSeanceSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.TestDemandeEntranteSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.TopMediumSerialisation;
 import java.io.IOException;
@@ -102,6 +106,14 @@ public class ActionServlet extends HttpServlet {
                 case "topmedium":
                     action = new TopMediumAction();
                     serialisation = new TopMediumSerialisation();
+                    break;
+                case "accepterdemande":
+                    action = new AccepterDemandeAction();
+                    serialisation = new AccepterDemandeSerialisation();
+                    break;
+                case "terminerseance":
+                    action = new TerminerSeanceAction();
+                    serialisation = new TerminerSeanceSerialisation();
                     break;
             }
         }

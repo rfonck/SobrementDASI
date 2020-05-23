@@ -3,19 +3,107 @@
     <head>
         <meta charset="UTF-8">
         <title>Accueil Client</title>
+        <style>
+            body
+            {
+                background: rgb(255,255,255);
+                background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(108,73,214,1) 100%);    
+            }
+            header
+            {
+                height:50px;
+                width:100%;
+                position:absolute;
+                top:0px;
+                left:0px;
+                background: rgba(12,14,72,1);
+                margin-bottom:50px;
+                display: flex;
+                justify-content: space-around;
+            }
+
+            div.droite
+            {
+                margin-top:10px;
+                margin-right:20px;
+                border-radius :2px;
+                border:2px solid white;
+                width:100px;
+                height:30px;
+                float:right;
+            }
+            h1.t
+            {
+                margin-top:50px;
+                margin-bottom:70px;
+                color:white;
+                text-align:center; 
+            }
+            h2
+            {
+               width:200px;
+               text-align:center;
+               color:white;   
+            }
+            p.head
+            {
+               margin-top:5px;
+               padding:auto;
+               text-align:center;
+               color:white;   
+            }
+            div.gauche
+            {     
+                margin-top:10px;
+                margin-left:20px;                
+                border-radius :2px;
+                width:100px;
+                height:30px;
+                float:left;
+            }
+            div.liste
+            {
+                width:65%;
+                display:inline-block;
+            }
+            div.profil
+            {
+                width:35%;
+                display:inline-block;
+            }
+            div.ctn
+            {
+
+                display: flex;
+                justify-content: space-around;  
+            }
+        </style>
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     </head>
     <body>
+       <header>
+            <div class="gauche"></div>
+            <div><h2>Predict'IF</h2></div>
+            <div class="droite"><a href="deconnectioncosmique.html"><p class='head'>se déconnecter</p></a></div>
+        </header>
+        <h1 class="t">Portail de voyance</h1>
+        <div class="ctn">
+            <div class="profil">
+                <h1>profil astro</h1>
+                <ul id ="profilastro"></ul>
+            </div>
 
-        <h1>Liste de mediums</h1>
-        <p id ="notification"></p>
-        <ul id = "listemedium"></ul>
-        <h1>profil astro</h1>
-        <ul id ="profilastro"></ul>
-
-        <a href="demanderVoyance.html"> Demander une consultation</a>        
-        <a href="historiqueConsultationClient.html"> Consulter votre historique de conultation</a>
+            <div class="liste">
+                <h1 >Liste de mediums</h1>
+                <p id ="notification"></p>
+                <ul id = "listemedium"></ul>
+                <div class="choix">
+                    <a href="demanderVoyance.html"> Demander une consultation</a>        
+                    <a href="historiqueConsultationClient.html"> Consulter votre historique de conultation</a>
+                </div>
+            </div>
+        </div>
         <script>
             $(document).ready( function () {
 
@@ -107,10 +195,6 @@
                     });
                 });
         </script>
-
-        <!-- Lien vers l'accueil -->
-        <p><a href="deconnectioncosmique.html">Deconnection</a></p>
-
         
     </body>
 </html>
