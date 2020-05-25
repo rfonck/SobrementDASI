@@ -35,8 +35,14 @@ and open the template in the editor.
            
         </article>
         <article id="profil2">
-
             
+            <div class="demande">
+                <h3>Inspiration Voyance</h3>
+                <label>sante</label><input id="sante" > </br>
+                <label>amour</label><input id="amour" > </br>
+                <label>travail</label><input id="travail" > </br>
+                <input type="button" value="Demander" id="demander" onclick="demandeprediction()">
+            </div>
         </article>        
         
         <script>
@@ -133,6 +139,34 @@ and open the template in the editor.
                         console.log('Response',response); // LOG dans Console Javascript
                        
                         $('#tjla').html("<a href='terminerSeance.html'> terminer la séance </a>"); 
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        
+                    });
+            };
+
+function demandeprediction()   // declaration de la fonction avec un argument
+            {
+  // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'demandeprediction',
+                            sante : $('#sante').val(),
+                            amour : $('#amour').val(),
+                            travail : $('#travail').val()
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+
+                        alert(response.prediction);
                     })
                     .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
                         console.log('Error',error); // LOG dans Console Javascript

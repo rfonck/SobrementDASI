@@ -7,6 +7,7 @@ import fr.insalyon.dasi.ihm.web.action.AfficherListeMediumAction;
 import fr.insalyon.dasi.ihm.web.action.ConnecterAction;
 import fr.insalyon.dasi.ihm.web.action.DeconnecterAction;
 import fr.insalyon.dasi.ihm.web.action.DemanderVoyanceAction;
+import fr.insalyon.dasi.ihm.web.action.DemanderPredictionAction;
 import fr.insalyon.dasi.ihm.web.action.HistoriqueVoyanceClientAction;
 import fr.insalyon.dasi.ihm.web.action.InformationDemandeAction;
 import fr.insalyon.dasi.ihm.web.action.InscrireAction;
@@ -19,6 +20,7 @@ import fr.insalyon.dasi.ihm.web.serialisation.AfficherListeMediumSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.InscrireSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.ConnecterSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.DeconnecterSerialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.DemanderPredictionSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.DemanderVoyanceSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.HistoriqueVoyanceClientSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.InformationDemandeSerialisation;
@@ -114,6 +116,10 @@ public class ActionServlet extends HttpServlet {
                 case "terminerseance":
                     action = new TerminerSeanceAction();
                     serialisation = new TerminerSeanceSerialisation();
+                    break;
+                case "demandeprediction":
+                    action = new DemanderPredictionAction();
+                    serialisation = new DemanderPredictionSerialisation();
                     break;
             }
         }
