@@ -34,10 +34,18 @@
             }
             h1.t
             {
-                margin-top:50px;
-                margin-bottom:70px;
-                color:white;
-                text-align:center; 
+                color:#FF00FF;
+                text-align:center;
+                margin-top:80px;
+
+                
+            }
+            h1
+            {
+                padding: 20px;
+                color:#FF00FF;
+                margin-bottom:40px;
+                
             }
             h2
             {
@@ -90,7 +98,7 @@
         <h1 class="t">Portail de voyance</h1>
         <div class="ctn">
             <div class="profil">
-                <h1>profil astro</h1>
+                <h1>Profil Astro</h1>
                 <ul id ="profilastro"></ul>
             </div>
 
@@ -132,7 +140,7 @@
                                 $('#listemedium').append("<li>"+"Sexe :-"+response.listemedium[i].sexe+" Denomination : "+response.listemedium[i].denomination+"</li>");
                                 if(response.listemedium[i].type==="cartomancien")
                                 {
-                                    $('#listemedium').append("<li>"+" Presentation :-"+response.listemedium[i].presentation+"</li>")
+                                    $('#listemedium').append("<li>"+" Presentation :-"+response.listemedium[i].presentation+"</li>");
                                 }
                                 else if(response.listemedium[i].type==="astrologue")
                                 {
